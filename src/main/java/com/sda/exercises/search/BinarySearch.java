@@ -1,11 +1,17 @@
 package com.sda.exercises.search;
 
+import com.sda.exercises.exception.NoElementException;
+
 import java.util.List;
 
 public class BinarySearch {
 
-    public int search(List<Integer> list, Integer searched) {
-        return searchBinary(list, 0, list.size() - 1, searched);
+    public int search(List<Integer> list, Integer searched) throws NoElementException {
+        int returned = searchBinary(list, 0, list.size() - 1, searched);
+        if (returned >= 0) {
+            return returned;
+        }
+        throw new NoElementException("Nie ma elementu: " + searched);
     }
 
     private int searchBinary(List<Integer> list, int left, int right, int searched) {
